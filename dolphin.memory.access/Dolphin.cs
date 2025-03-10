@@ -43,16 +43,16 @@ namespace Dolphin.Memory.Access
         /// Converts a Dolphin/GC Memory address in the form of 0x8XXXXXXX to a real memory address.
         /// </summary>
         /// <param name="address">Address in form of 0x8XXXXXXX to get real physical address of.</param>
-        /// <returns><see cref="IntPtr.Zero"/> if Dolphin is not found or running, else the real memory address.</returns>
-        public bool TryGetAddress(long address, out IntPtr realAddress)
+        /// <returns><see cref="UIntPtr.Zero"/> if Dolphin is not found or running, else the real memory address.</returns>
+        public bool TryGetAddress(long address, out UIntPtr realAddress)
         {
             if (TryGetBaseAddress(out var baseAddress))
             {
-                realAddress = (IntPtr)((address - EmulatedMemoryBase) + (long) baseAddress);
+                realAddress = (UIntPtr)((address - EmulatedMemoryBase) + (long) baseAddress);
                 return true;
             }
 
-            realAddress = IntPtr.Zero;
+            realAddress = UIntPtr.Zero;
             return false;
         }
 
@@ -135,7 +135,7 @@ namespace Dolphin.Memory.Access
             // Check if page mapped and right size.
             if (memoryPage.RegionSize == (IntPtr) EmulatedMemorySize && memoryPage.lType == Native.Native.PageType.Mapped)
             {
-                // Note taken from from Dolphin Memory Engine:
+                // Note taken from Dolphin Memory Engine:
 
                 /*
                     Here, it's likely the right page, but it can happen that multiple pages with these criteria

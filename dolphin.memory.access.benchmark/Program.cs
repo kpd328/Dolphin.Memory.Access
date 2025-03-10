@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 using BenchmarkDotNet.Running;
 
 namespace Dolphin.Memory.Access.Benchmark
@@ -13,7 +14,7 @@ namespace Dolphin.Memory.Access.Benchmark
         }
     }
 
-    [CoreJob()]
+    [SimpleJob(RuntimeMoniker.Net80)]
     public class GetDolphinAddressBenchmark
     {
         /* Dolphin should be running a game for this benchmark to yield correct results. */

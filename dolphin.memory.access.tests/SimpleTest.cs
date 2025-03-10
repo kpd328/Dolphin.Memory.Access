@@ -17,7 +17,7 @@ namespace Dolphin.Memory.Access.Tests
                 _process = Process.GetProcessesByName("dolphin")[0];
                 _dolphin = new Dolphin(_process);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception("Dolphin is not running.");
             }
